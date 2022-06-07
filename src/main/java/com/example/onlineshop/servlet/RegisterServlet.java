@@ -10,6 +10,9 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 @WebServlet(urlPatterns = "/register" )
 public class RegisterServlet extends HttpServlet {
@@ -46,7 +49,29 @@ public class RegisterServlet extends HttpServlet {
             PrintWriter out= resp.getWriter();
             out.println("<font color=red>"+errorMsg+"</font>");
             rd.include(req, resp);
+        }else {
+            Connection con = (Connection) getServletContext().getAttribute("DBConnection");
+            PreparedStatement ps = null;
+            try {
+                ps = con.prepareStatement("insert into users(customer_name,email,country, customer_password) values (?,?,?,?)");
+                ps.setString(1, name);
+                ps.setString(2, email);
+                ps.setString(3, country);
+                ps.setString(4, password);
+
+                ps.execute();
+
+
+                //forward to login page to login
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html");
+                PrintWriter out= resp.getWriter();
+                out.println("<font color=green>Registration successful, please login below.</font>");
+                rd.include(req, resp);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
+
 
     }
 }

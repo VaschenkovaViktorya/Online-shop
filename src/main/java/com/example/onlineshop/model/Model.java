@@ -1,6 +1,8 @@
 package com.example.onlineshop.model;
 
-import com.example.onlineshop.entities.User;
+
+
+import com.example.onlineshop.util.User;
 
 import java.util.ArrayList;
 import java.util.List;
