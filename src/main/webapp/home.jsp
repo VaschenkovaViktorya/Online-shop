@@ -16,5 +16,6 @@
 <form action="Logout" method="post">
     <input type="submit" value="Logout" >
 </form>
+<a href="index.html">home</a>
 </body>
 </html>

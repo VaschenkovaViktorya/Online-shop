@@ -14,11 +14,11 @@
     List<Product> listOfProduct = (List<Product>) session.getAttribute("ListOf_product");
     out.println("<ui>");
     for (Product s : listOfProduct) {
-        out.println("<li>" + s.getName() + s.getPrice()+"<a href =./addToBasket?id" + s.getId() + ">add to basket</a>" +"</li>");
+        out.println("<li>" + s.getName() + s.getPrice()+"<a href =./addToBasket?id=" + s.getId() + ">add to basket</a>" +"</li>");
         out.println("</ui>");
     }
 %>
-
+<a href="index.html">home</a>
 <%--<a href=\"./addToBasket?name="--%>
 </body>
 </html>
