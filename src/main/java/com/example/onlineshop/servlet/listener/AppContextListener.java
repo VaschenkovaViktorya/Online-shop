@@ -1,6 +1,6 @@
 package com.example.onlineshop.servlet.listener;
 
-import com.example.onlineshop.util.DBConnectionManager;
+import com.example.onlineshop.utils.DBConnectionManager;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;

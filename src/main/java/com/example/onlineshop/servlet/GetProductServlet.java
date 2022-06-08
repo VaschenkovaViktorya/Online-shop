@@ -1,7 +1,6 @@
 package com.example.onlineshop.servlet;
 
-import com.example.onlineshop.util.Product;
-import jakarta.servlet.RequestDispatcher;
+import com.example.onlineshop.utils.Product;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -10,7 +9,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,25 +24,13 @@ public class GetProductServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String category = req.getParameter("category");
-        resp.getWriter().append("tovary kategorii " + req.getParameter("category"));
-        String errorMsg = null;
-        if (category == null || category.equals("")) {
-            errorMsg = "Categoty can't be null or empty";
-        }
-        if(errorMsg != null){
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.html");
-            PrintWriter out= resp.getWriter();
-            out.println("<font color=red>"+errorMsg+"</font>");
-            rd.include(req, resp);
-        } else{
             Connection con = (Connection) getServletContext().getAttribute("DBConnection");
             System.out.println(">>>>>>>>>Connection");
             PreparedStatement ps = null;
             ResultSet rs = null;
             try{
-                ps = con.prepareStatement("select id, product_name, category,price,quantity  from product where category=? ");
-                ps.setString(1, category);
+                ps = con.prepareStatement("select id, product_name, category,price,quantity  from product ");
+                //ps.setString(1, category);
                 rs = ps.executeQuery();
                 products.clear();
                 if (rs != null){
@@ -57,7 +43,10 @@ public class GetProductServlet extends HttpServlet {
 //                    rd.forward(req,resp);
                         products.add(new Product(rs.getString("product_name"), rs.getString("category"), rs.getInt("id"), rs.getInt("price"), rs.getInt("quantity")));
                     }
-                    resp.getWriter().append(products.toString());
+                    HttpSession session = req.getSession();
+                    session.setAttribute("ListOf_product", products);
+                    resp.sendRedirect("listOfProduct.jsp");
+  //                  resp.getWriter().append(products.toString());
                 }
 
 
@@ -73,7 +62,7 @@ public class GetProductServlet extends HttpServlet {
                 }
 
             }
-        }
+
 
     }
 }

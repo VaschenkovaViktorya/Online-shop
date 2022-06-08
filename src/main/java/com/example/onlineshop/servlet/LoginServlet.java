@@ -1,6 +1,6 @@
 package com.example.onlineshop.servlet;
 
-import com.example.onlineshop.util.User;
+import com.example.onlineshop.utils.User;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("password");
         String errorMsg = null;
         if(email == null || email.equals("")){
-            errorMsg ="User Email can't be null or empty";
+            errorMsg ="  User Email can't be null or empty";
         }
         if(password == null || password.equals("")){
             errorMsg = "Password can't be null or empty";

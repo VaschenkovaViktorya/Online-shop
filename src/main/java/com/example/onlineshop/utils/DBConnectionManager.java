@@ -1,4 +1,4 @@
-package com.example.onlineshop.util;
+package com.example.onlineshop.utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
