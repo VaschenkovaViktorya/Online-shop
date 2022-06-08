@@ -14,13 +14,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 @WebServlet(name = "getProduct", urlPatterns = {"/getProduct"})
 public class GetProductServlet extends HttpServlet {
     static Logger logger = Logger.getLogger(String.valueOf(LoginServlet.class));
-    List<Product> products= new ArrayList<>();
+    public static List<Product> products= new ArrayList<>();
+    public static Map<Integer,Product> mapProduct = new HashMap<>();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,16 +38,12 @@ public class GetProductServlet extends HttpServlet {
                 products.clear();
                 if (rs != null){
                     while ( rs.next()) {
-//
-//                    Product product = new Product(rs.getString("product_name"), rs.getString("category"), rs.getInt("id"), rs.getInt("price"), rs.getInt("quantity"));
-//                    HttpSession session = req.getSession();
-//                    session.setAttribute("Product", product);
-//                    RequestDispatcher rd = req.getRequestDispatcher("/index.html");
-//                    rd.forward(req,resp);
-                        products.add(new Product(rs.getString("product_name"), rs.getString("category"), rs.getInt("id"), rs.getInt("price"), rs.getInt("quantity")));
+                        //  products.add(new Product(rs.getString("product_name"), rs.getString("category"), rs.getInt("id"), rs.getInt("price"), rs.getInt("quantity")));
+                        mapProduct.put(rs.getInt("id"),new Product(rs.getString("product_name"), rs.getString("category"), rs.getInt("id"), rs.getInt("price"), rs.getInt("quantity")));
                     }
                     HttpSession session = req.getSession();
                     session.setAttribute("ListOf_product", products);
+                    session.setAttribute("Map_of_product",mapProduct);
                     resp.sendRedirect("listOfProduct.jsp");
   //                  resp.getWriter().append(products.toString());
                 }
