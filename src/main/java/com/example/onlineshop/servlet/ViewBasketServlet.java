@@ -1,6 +1,7 @@
 package com.example.onlineshop.servlet;
 
 import com.example.onlineshop.utils.Product;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -16,7 +17,11 @@ public class ViewBasketServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession httpSession = req.getSession();
         List<Product> mybasket = (List<Product>) httpSession.getAttribute("myBasket");
-        if (mybasket != null && mybasket.size()!=0) {
+        if (mybasket != null && mybasket.size()!=0)
+        {
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/viewBasket.jsp");
+            rd.forward(req, resp);
+        }/*{
             resp.getWriter().append("<table>  <tr>\n" +
                     "    <th>Name</th>\n" +
                     "    <th>Category</th>\n" +
@@ -35,7 +40,7 @@ public class ViewBasketServlet extends HttpServlet {
             }
 
             resp.getWriter().append("</table>");
-        } else {
+        }*/ else {
             resp.getWriter().append("Your basket is empty");
         }
     }
