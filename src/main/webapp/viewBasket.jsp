@@ -42,6 +42,7 @@
 //        out.println("<li>" + s.getName() + s.getPrice()+"<a href =./addToBasket?id=" + s.getId() + ">X</a>" +"</li>");
 //        out.println("</ui>");
 //    }
+    int total = 0;
     out.println("<table>  <tr>\n" +
             "    <th>Name</th>\n" +
             "    <th>Category</th>\n" +
@@ -49,14 +50,19 @@
             "  </tr>");
     for (int i=0; i<listOfProduct.size();i++){
         Product p = listOfProduct.get(i);
+        total=p.getPrice()+total;
         out.println("  <tr>\n" +
                 "    <td>"+p.getName()+"</td>\n" +
                 "    <td>"+p.getCategory()+"</td>\n" +
                 "    <td>"+p.getPrice()+"</td>\n" +
                 "    <td> <p><a href=\"./remove?id="+i +"\">"+"X"+"</a></p></td>\n" +
                 "  </tr>");
+
     }
+    out.println("<tr><b>Total price = </b>"+total+"</tr></table>");
 %>
+<p><b>view basket</b></p> <br/>
+<a href="Login">Personal account</a>
 </body>
 </html>
 

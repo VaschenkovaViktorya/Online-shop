@@ -57,7 +57,7 @@ public class BuyProductServlet extends HttpServlet {
         } else {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/viewBasket.jsp");
             PrintWriter out = resp.getWriter();
-            out.println("<font color=red>you must register in system</font>");
+            out.println("<font color=red>you must register in systemIf you are registered user, please <a href=\"login.html\">login</a></font>");
             rd.include(req, resp);
         }
     }

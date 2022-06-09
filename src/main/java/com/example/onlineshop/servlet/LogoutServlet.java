@@ -24,8 +24,10 @@ Logger logger = Logger.getLogger(String.valueOf(LogoutServlet.class));
             }
         }
         //invalidate the session if exists
+
         HttpSession session = req.getSession(false);
-        logger.info("User="+session.getAttribute("User"));
+        session.removeAttribute("myBasket");
+                logger.info("User="+session.getAttribute("User"));
         if(session != null){
             session.invalidate();
         }

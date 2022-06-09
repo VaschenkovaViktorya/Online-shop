@@ -17,7 +17,11 @@
 <form action="Logout" method="post">
     <input type="submit" value="Logout" >
 </form>
-<a href="index.html">home</a>
-<a href="viewBasket">basket</a>
+<a href="index.html">home</a><br>
+<a href="viewBasket">basket</a></br>
+<form action="viewOrder" method="post">
+    <input type="submit" value="viewOrder" >
+</form>
+<%--<a href="viewBasket">basket</a>--%>
 </body>
 </html>

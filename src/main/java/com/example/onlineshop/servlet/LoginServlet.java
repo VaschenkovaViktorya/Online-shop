@@ -18,28 +18,41 @@ import java.sql.SQLException;
 import java.util.logging.Logger;
 
 
-@WebServlet(name = "Login", urlPatterns = { "/Login" })
+@WebServlet(name = "Login", urlPatterns = {"/Login"})
 public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     static Logger logger = Logger.getLogger(String.valueOf(LoginServlet.class));
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("User");
+        if (user != null)
+            resp.sendRedirect("home.jsp");
+        else {RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html");
+            rd.forward(req,resp);
+        }
+    }
+
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String errorMsg = null;
-        if(email == null || email.equals("")){
-            errorMsg ="User Email can't be null or empty";
+        if (email == null || email.equals("")) {
+            errorMsg = "User Email can't be null or empty";
         }
-        if(password == null || password.equals("")){
+        if (password == null || password.equals("")) {
             errorMsg = "Password can't be null or empty";
         }
 
-        if(errorMsg != null){
+        if (errorMsg != null) {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html");
-            PrintWriter out= resp.getWriter();
-            out.println("<font color=red>"+errorMsg+"</font>");
+            PrintWriter out = resp.getWriter();
+            out.println("<font color=red>" + errorMsg + "</font>");
             rd.include(req, resp);
-        }else {
+        } else {
 
             Connection con = (Connection) getServletContext().getAttribute("DBConnection");
             System.out.println(">>>>>>>>>Connection");
@@ -77,5 +90,6 @@ public class LoginServlet extends HttpServlet {
 
             }
 
-        }}
+        }
+    }
 }
