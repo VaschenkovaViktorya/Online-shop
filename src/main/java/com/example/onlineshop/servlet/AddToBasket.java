@@ -50,7 +50,7 @@ public class AddToBasket extends HttpServlet {
         }
         //System.out.println("<<<<<<<<<<<<"+myBasket.toString());
 
-
+//        req.getContextPath() + "/index"
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/listOfProduct.jsp");
         PrintWriter out= resp.getWriter();
 /*        for (int j=0;j<5; j++ ) out.println("<a href = #><font color=blue>" + Msg + "</font>circle</a>");

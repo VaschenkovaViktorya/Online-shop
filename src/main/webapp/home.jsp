@@ -11,17 +11,21 @@
 <body>
 <%User user = (User) session.getAttribute("User"); %>
 <h3>Hi <%=user.getName() %></h3>
-<strong>Your Email</strong>: <%=user.getEmail() %><br>
-<strong>Your Country</strong>: <%=user.getCountry() %><br>
+<p><strong>Your Name</strong>: <%=user.getName() %> </p><br>
+<p><strong>Your Email</strong>: <%=user.getEmail() %></p><br>
+<p><strong>Your Country</strong>: <%=user.getCountry() %></p><br>
+<a href="edit?name=<%=user.getId()%>>Edit</a>
 <br>
 <form action="Logout" method="post">
-    <input type="submit" value="Logout" >
+    <input type="submit" value="Logout">
 </form>
 <a href="index.html">home</a><br>
 <a href="viewBasket">basket</a></br>
 <form action="viewOrder" method="post">
     <input type="submit" value="viewOrder" >
 </form>
+<div><a href="edit?id=<%=user.getId()%>">Edit</a></div>
+
 <%--<a href="viewBasket">basket</a>--%>
 </body>
 </html>
