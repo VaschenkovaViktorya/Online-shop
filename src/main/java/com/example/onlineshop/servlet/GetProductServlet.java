@@ -39,7 +39,9 @@ public class GetProductServlet extends HttpServlet {
                 if (rs != null){
                     while ( rs.next()) {
                         //  products.add(new Product(rs.getString("product_name"), rs.getString("category"), rs.getInt("id"), rs.getInt("price"), rs.getInt("quantity")));
-                        mapProduct.put(rs.getInt("id"),new Product(rs.getString("product_name"), rs.getString("category"), rs.getInt("id"), rs.getInt("price"), rs.getInt("quantity")));
+                        mapProduct.put(rs.getInt("id"),new Product(rs.getString("product_name"),
+                                rs.getString("category"), rs.getInt("id"),
+                                rs.getInt("price"), rs.getInt("quantity")));
                     }
                     HttpSession session = req.getSession();
                     session.setAttribute("ListOf_product", products);

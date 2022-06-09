@@ -18,5 +18,6 @@
     <input type="submit" value="Logout" >
 </form>
 <a href="index.html">home</a>
+<a href="viewBasket">basket</a>
 </body>
 </html>

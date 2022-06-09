@@ -21,6 +21,10 @@ public class Testing {
         for (Map.Entry <Integer, Product> entry : product.entrySet()) {
             System.out.println(entry.getKey()+" : "+entry.getValue().getName());
         }
+        String test ="";
+        if (test.equals("")==true)
+        System.out.println("empry");
+        else System.out.println("not empry");
 
     }
 
