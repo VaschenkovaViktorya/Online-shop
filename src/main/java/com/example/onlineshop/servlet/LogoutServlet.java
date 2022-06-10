@@ -28,10 +28,10 @@ Logger logger = Logger.getLogger(String.valueOf(LogoutServlet.class));
         HttpSession session = req.getSession(false);
 /*        boolean relog = (boolean) session.getAttribute("Relogin");
         if ( !relog )*/
-        session.removeAttribute("myBasket");
-                logger.info("User="+session.getAttribute("User"));
+
         if(session != null){
             session.invalidate();
+           // session.removeAttribute("myBasket");
         }
         resp.sendRedirect("login.html");
     }

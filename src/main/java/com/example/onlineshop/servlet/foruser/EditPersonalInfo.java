@@ -44,7 +44,7 @@ public class EditPersonalInfo extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         //для сохранения при релогине
-        boolean relogin =false;
+        User user = new User();
         Integer id = Integer.valueOf(req.getParameter("id"));
         String name = req.getParameter("name");
         String email = req.getParameter("email");
@@ -59,19 +59,31 @@ public class EditPersonalInfo extends HttpServlet {
                 ps = null;
                 ResultSet rs = null;
                 try {
-                    ps = con.prepareStatement("select id, customer_name, email,country, money from users where id=? ");
-                    ps.setInt(1,id);
+                    ps = con.prepareStatement("select id, customer_name, email,country, money,manager from users where id=? ");
+                    ps.setInt(1, id);
                     rs = ps.executeQuery();
                     if (rs != null && rs.next()) {
 
                         // User user = new User(rs.getString("customer_name"), rs.getString("email"), rs.getString("country"), rs.getInt("id"));
-                        User user = new User(rs.getString("customer_name"),
-                                rs.getString("email"), rs.getString("country"), rs.getInt("id"),rs.getInt("money"));
+                        user = new User(rs.getString("customer_name"),
+                                rs.getString("email"), rs.getString("country"), rs.getInt("id"), rs.getInt("money"));
 
                         HttpSession session = req.getSession();
                         session.setAttribute("User", user);
 
                     }
+
+                if ((rs.getString("manager")!=null) &&(rs.getString("manager").equals("manager"))) {
+                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/homeManager.jsp");
+                    PrintWriter out = resp.getWriter();
+                    out.println("<font color=green>Update successful.</font>");
+                    rd.include(req, resp);
+                } else {
+                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/home.jsp");
+                    PrintWriter out = resp.getWriter();
+                    out.println("<font color=green>Update successful.</font>");
+                    rd.include(req, resp);
+                }
                 } catch (SQLException e) {
                     e.printStackTrace();
                     throw new ServletException("DB Connection problem.");
@@ -84,10 +96,7 @@ public class EditPersonalInfo extends HttpServlet {
                     }
 
                 }
-                RequestDispatcher rd = getServletContext().getRequestDispatcher("/home.jsp");
-                PrintWriter out = resp.getWriter();
-                out.println("<font color=green>Update successful.</font>");
-                rd.include(req, resp);
+
 
 /*                User user = (User) req.getSession().getAttribute("User");
                 if(money.equals(user.getMoney())) {

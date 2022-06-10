@@ -19,19 +19,27 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import static com.example.onlineshop.utils.ProductService.loadProduct;
+
 @WebServlet(name = "getProduct", urlPatterns = {"/getProduct"})
 public class GetProductServlet extends HttpServlet {
     static Logger logger = Logger.getLogger(String.valueOf(LoginServlet.class));
 //    public static List<Product> products= new ArrayList<>();
-//    public static Map<Integer,Product> mapProduct = new HashMap<>();
+//      Map<Integer,Product> mapProduct = new HashMap<>();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
+/*        HttpSession session = req.getSession();
         session.setAttribute("Map_of_product",(Map<Integer, Product>) getServletContext().getAttribute("MapaProductov"));
-        resp.sendRedirect("listOfProduct.jsp");
+        resp.sendRedirect("listOfProduct.jsp");*/
       //  mapProduct = (Map<Integer, Product>) getServletContext().getAttribute("MapaProductov");
-        /*
+        Map<Integer,Product> mapProduct = new HashMap<>();
+        mapProduct = loadProduct();
+        HttpSession session = req.getSession();
+        session.setAttribute("Map_of_product",mapProduct);
+        resp.sendRedirect("listOfProduct.jsp");
+
+ /*       Map<Integer,Product> mapProduct = new HashMap<>();
             Connection con = (Connection) getServletContext().getAttribute("DBConnection");
             System.out.println(">>>>>>>>>Connection");
             PreparedStatement ps = null;
@@ -40,8 +48,7 @@ public class GetProductServlet extends HttpServlet {
                 ps = con.prepareStatement("select id, product_name, category,price,quantity  from product ");
                 //ps.setString(1, category);
                 rs = ps.executeQuery();
-                products.clear();
-               // mapProduct.clear();
+                               // mapProduct.clear();
                 if (rs != null){
                     while ( rs.next()) {
                         //  products.add(new Product(rs.getString("product_name"), rs.getString("category"), rs.getInt("id"), rs.getInt("price"), rs.getInt("quantity")));
@@ -50,7 +57,6 @@ public class GetProductServlet extends HttpServlet {
                                 rs.getInt("price"), rs.getInt("quantity")));
                     }
                     HttpSession session = req.getSession();
-                    session.setAttribute("ListOf_product", products);
                     session.setAttribute("Map_of_product",mapProduct);
                     resp.sendRedirect("listOfProduct.jsp");
   //                  resp.getWriter().append(products.toString());
@@ -68,8 +74,7 @@ public class GetProductServlet extends HttpServlet {
                     System.out.println("SQLException in closing PreparedStatement or ResultSet");
                 }
 
-            }
+            }*/
 
-*/
     }
 }

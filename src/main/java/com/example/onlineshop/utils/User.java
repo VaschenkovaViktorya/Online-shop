@@ -12,6 +12,10 @@ public class User implements Serializable{
     private int id;
     private String country;
 
+    public User() {
+
+    }
+
     public Integer getMoney() {
         return money;
     }

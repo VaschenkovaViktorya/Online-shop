@@ -91,7 +91,7 @@ public class FindProductServlet extends HttpServlet {
                         findedMapProduct.put(rs.getInt("id"),new Product(rs.getString("product_name"),
                                 rs.getString("category"), rs.getInt("id"),
                                 rs.getInt("price"), rs.getInt("quantity")));
-/*                    Product findProduct = new Product(rs.getString("product_name"),
+                        /*                    Product findProduct = new Product(rs.getString("product_name"),
                             rs.getString("category"), rs.getInt("id"),
                             rs.getInt("price"), rs.getInt("quantity"));*/
                     }

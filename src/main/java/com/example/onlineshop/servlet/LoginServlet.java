@@ -73,7 +73,7 @@ public class LoginServlet extends HttpServlet {
 
                     HttpSession session = req.getSession();
                     session.setAttribute("User", user);
-                    if (rs.getString("manager").equals("manager")) {
+                    if ((rs.getString("manager")!=null) &&(rs.getString("manager").equals("manager"))) {
                         resp.sendRedirect("homeManager.jsp");
                     }else{resp.sendRedirect("home.jsp");}
 

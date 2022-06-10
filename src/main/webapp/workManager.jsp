@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-    <title>Home Page</title>
+    <title>Work page</title>
 </head>
 <body>
 <%User user = (User) session.getAttribute("User"); %>
@@ -17,15 +17,15 @@
 <p><strong>money</strong>: <%=user.getMoney()%></p><br>
 <div><a href="edit?id=<%=user.getId()%>">Edit personal info</a></div>
 <br>
-<form action="Logout" method="post">
-    <input type="submit" value="Logout">
-</form>
+<%--<form action="Logout" method="post">--%>
+<%--    <input type="submit" value="Logout">--%>
+<%--</form>--%>
 <a href="index.html">home</a><br>
-<a href="viewBasket">basket</a></br>
+<a href="viewBasket">about you</a></br>
 <form action="viewOrder" method="post">
     <input type="submit" value="viewOrder" >
 </form>
-<a href="workManager.jsp">Edit shop</a></br>
+
 
 <%--<a href="viewBasket">basket</a>--%>
 </body>

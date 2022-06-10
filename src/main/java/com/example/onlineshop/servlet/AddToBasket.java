@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.example.onlineshop.utils.ProductService.loadProduct;
 
 
 @WebServlet(name = "addToBasket", urlPatterns = {"/addToBasket"})
@@ -37,8 +38,8 @@ public class AddToBasket extends HttpServlet {
         String Msg  = "Product added to basket  "+id ;
 //формирование корзины
         //???? могу и из сессии получит????
-       // MapaProductov
-        mapProduct = (Map<Integer, Product>) getServletContext().getAttribute("MapaProductov");
+       // здесь надо брать из Map_of_product
+        mapProduct = loadProduct();
         Product selectedProduct = mapProduct.get(id);
         System.out.println(">>>>>> mapProduct" + mapProduct.get(id).toString());
        // System.out.println(">>>>>est' li product "+selectedProduct.toString());
