@@ -26,8 +26,10 @@
 <%
     Map<Integer, Product> mapOfProduct = (Map<Integer, Product>) session.getAttribute("findedMapProduct");
     out.println("<ui>");
-    for (Map.Entry <Integer, Product> entry : mapOfProduct.entrySet()){
-        out.println("<li>" + entry.getValue().getName() + entry.getValue().getPrice()+"<a href =./addToBasket?id=" + entry.getKey() + ">add to basket</a>" +"</li>");
+    for (Map.Entry<Integer, Product> entry : mapOfProduct.entrySet()) {
+        out.println("<li>" + entry.getValue().getName() + entry.getValue().getPrice() + "<a href =./addToBasket?id=" + entry.getKey() + "&uri=listOfFindedProduct>add to basket</a>" + "</li>");
+
+
         out.println("</ui>");
     }
 %>

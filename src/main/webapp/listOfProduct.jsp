@@ -29,7 +29,7 @@
 
     out.println("<ui>");
     for (Map.Entry <Integer, Product> entry : mapOfProduct.entrySet()){
-        out.println("<li>" + entry.getValue().getName() + entry.getValue().getPrice()+"<a href =./addToBasket?id=" + entry.getKey() + ">add to basket</a>" +"</li>");
+        out.println("<li>" + entry.getValue().getName() + entry.getValue().getPrice()+"<a href =./addToBasket?id=" + entry.getKey() + "&uri=listOfProduct>add to basket</a>" +"</li>");
         out.println("</ui>");
     }
 %>

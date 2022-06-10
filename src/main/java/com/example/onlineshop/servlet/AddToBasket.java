@@ -27,6 +27,8 @@ public class AddToBasket extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer id = Integer.valueOf(req.getParameter("id"));
+        String uri = req.getParameter("uri");
+
 //        products.get()
         // resp.getWriter().append(id);
         HttpSession session = req.getSession();
@@ -55,7 +57,7 @@ public class AddToBasket extends HttpServlet {
         //System.out.println("<<<<<<<<<<<<"+myBasket.toString());
 
 //        req.getContextPath() + "/index"
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/viewBasket.jsp");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/"+uri+".jsp");
         PrintWriter out= resp.getWriter();
 /*        for (int j=0;j<5; j++ ) out.println("<a href = #><font color=blue>" + Msg + "</font>circle</a>");
         //out.println("<a href = #><font color=red>"+Msg+"</font></a>");*/
