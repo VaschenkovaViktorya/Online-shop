@@ -27,9 +27,12 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("User");
-        if (user != null)
+        if (user != null) {
+            if ((req.getSession().getAttribute("manager") != null) && (req.getSession().getAttribute("manager").equals("manager"))) {
+                resp.sendRedirect("homeManager.jsp");
+            }
             resp.sendRedirect("home.jsp");
-        else {
+        } else {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html");
             rd.forward(req, resp);
         }
@@ -73,9 +76,12 @@ public class LoginServlet extends HttpServlet {
 
                     HttpSession session = req.getSession();
                     session.setAttribute("User", user);
-                    if ((rs.getString("manager")!=null) &&(rs.getString("manager").equals("manager"))) {
+                    if ((rs.getString("manager") != null) && (rs.getString("manager").equals("manager"))) {
+                        req.getSession().setAttribute("manager", (rs.getString("manager")));
                         resp.sendRedirect("homeManager.jsp");
-                    }else{resp.sendRedirect("home.jsp");}
+                    } else {
+                        resp.sendRedirect("home.jsp");
+                    }
 
 
                 } else {

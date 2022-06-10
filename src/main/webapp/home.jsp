@@ -1,7 +1,7 @@
 <%@ page import="com.example.onlineshop.utils.User" %>
 
-<%@ page language="java" contentType="text/html; charset=US-ASCII"
-         pageEncoding="US-ASCII"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+         pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "https://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,8 +9,10 @@
     <title>Home Page</title>
 </head>
 <body>
+<h3>Страница покупателя</h3>
 <%User user = (User) session.getAttribute("User"); %>
 <h3>Hi <%=user.getName() %></h3>
+
 <p><strong>Your Name</strong>: <%=user.getName() %> </p><br>
 <p><strong>Your Email</strong>: <%=user.getEmail() %></p><br>
 <p><strong>Your Country</strong>: <%=user.getCountry() %></p><br>

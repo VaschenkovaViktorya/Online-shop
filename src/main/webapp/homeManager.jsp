@@ -11,6 +11,7 @@
 <body>
 <%User user = (User) session.getAttribute("User"); %>
 <h3>Hi <%=user.getName() %></h3>
+<h3>Personal manager's page</h3>
 <p><strong>Your Name</strong>: <%=user.getName() %> </p><br>
 <p><strong>Your Email</strong>: <%=user.getEmail() %></p><br>
 <p><strong>Your Country</strong>: <%=user.getCountry() %></p><br>
