@@ -26,6 +26,8 @@ Logger logger = Logger.getLogger(String.valueOf(LogoutServlet.class));
         //invalidate the session if exists
 
         HttpSession session = req.getSession(false);
+/*        boolean relog = (boolean) session.getAttribute("Relogin");
+        if ( !relog )*/
         session.removeAttribute("myBasket");
                 logger.info("User="+session.getAttribute("User"));
         if(session != null){

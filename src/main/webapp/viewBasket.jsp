@@ -59,6 +59,7 @@
                 "  </tr>");
 
     }
+    session.setAttribute("TotalPrice", total);
     out.println("<tr><b>Total price = </b>"+total+"</tr></table>");
 %>
 <p><b>view basket</b></p> <br/>

@@ -14,7 +14,8 @@
 <p><strong>Your Name</strong>: <%=user.getName() %> </p><br>
 <p><strong>Your Email</strong>: <%=user.getEmail() %></p><br>
 <p><strong>Your Country</strong>: <%=user.getCountry() %></p><br>
-<a href="edit?name=<%=user.getId()%>>Edit</a>
+<p><strong>money</strong>: <%=user.getMoney()%></p><br>
+<div><a href="edit?id=<%=user.getId()%>">Edit</a></div>
 <br>
 <form action="Logout" method="post">
     <input type="submit" value="Logout">
@@ -24,7 +25,7 @@
 <form action="viewOrder" method="post">
     <input type="submit" value="viewOrder" >
 </form>
-<div><a href="edit?id=<%=user.getId()%>">Edit</a></div>
+
 
 <%--<a href="viewBasket">basket</a>--%>
 </body>

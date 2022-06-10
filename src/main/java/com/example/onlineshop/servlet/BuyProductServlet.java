@@ -23,41 +23,50 @@ public class BuyProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("User");
+        Integer totalPrice = (Integer) session.getAttribute("TotalPrice");
         List<Product> basket = (List<Product>) session.getAttribute("myBasket");
 
         if (user != null && basket.size() > 0) {
-           // resp.getWriter().append("You buy" + user.getName() + basket.toString());
-            Connection con = (Connection) getServletContext().getAttribute("DBConnection");
-            System.out.println("Buying DBConnection>>>>>>>");
-            System.out.println("BASKET " + basket.toString());
-            PreparedStatement ps = null;
-            try {
-             for (Product p : basket) {
-                    ps = con.prepareStatement("insert into  orders(id_user,id_product) values (?,?)");
-                    ps.setInt(1, user.getId());
-                    ps.setInt(2, p.getId());
-                    System.out.println("p.getId()" + p.getId());
-                    System.out.println("user.getId()" + user.getId());
-                    ps.execute();
-                }
+            if (totalPrice > user.getMoney()) {
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("/viewBasket.jsp");
+                PrintWriter out = resp.getWriter();
+                out.println("<font color=red>You need more money <a href=\"home.jsp\">Personal account</a><br></font>");
+                rd.include(req, resp);
+            }else{
+                // resp.getWriter().append("You buy" + user.getName() + basket.toString());
+                Connection con = (Connection) getServletContext().getAttribute("DBConnection");
+                System.out.println("Buying DBConnection>>>>>>>");
+                System.out.println("BASKET " + basket.toString());
+                PreparedStatement ps = null;
+                try {
+                    for (Product p : basket) {
+                        ps = con.prepareStatement("insert into  orders(id_user,id_product) values (?,?)");
+                        ps.setInt(1, user.getId());
+                        ps.setInt(2, p.getId());
+                        System.out.println("p.getId()" + p.getId());
+                        System.out.println("user.getId()" + user.getId());
+                        ps.execute();
+                    }
 //                insert into  orders(id_user,id_product)
 //                values ('1', '4'),
 
 
-                //forward to login page to login
-                RequestDispatcher rd = getServletContext().getRequestDispatcher("/viewBasket.jsp");
-                PrintWriter out = resp.getWriter();
-                out.println("<font color=green>Buying is successful.</font>");
-                rd.include(req, resp);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+                    //forward to login page to login
+                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/viewBasket.jsp");
+                    PrintWriter out = resp.getWriter();
+                    out.println("<font color=green>Buying is successful.</font>");
+                    rd.include(req, resp);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
+
 
 
         } else {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/viewBasket.jsp");
             PrintWriter out = resp.getWriter();
-            out.println("<font color=red>you must register in systemIf you are registered user, please <a href=\"login.html\">login</a></font>");
+            out.println("<font color=red>you must register in system If you are registered user, please <a href=\"login.html\">login</a></font>");
             rd.include(req, resp);
         }
     }

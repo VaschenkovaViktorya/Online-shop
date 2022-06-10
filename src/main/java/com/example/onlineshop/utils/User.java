@@ -12,6 +12,24 @@ public class User implements Serializable{
     private int id;
     private String country;
 
+    public Integer getMoney() {
+        return money;
+    }
+
+    public void setMoney(Integer money) {
+        this.money = money;
+    }
+
+    private Integer money;
+
+    public User(String name, String email,  String country,int id, Integer money) {
+        this.name = name;
+        this.email = email;
+        this.id = id;
+        this.country = country;
+        this.money = money;
+    }
+
     public User(String nm, String em, String country, int i){
         this.name=nm;
         this.id=i;

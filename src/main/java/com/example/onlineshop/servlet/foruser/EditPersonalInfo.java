@@ -30,8 +30,8 @@ public class EditPersonalInfo extends HttpServlet {
             if (user != null) {
                 req.setAttribute("editUser", user);
                 getServletContext().getRequestDispatcher("/editUser.jsp").forward(req, resp);
-            }else{
-               // resp.getWriter().append("Not found!");
+            } else {
+                // resp.getWriter().append("Not found!");
             }
 
 
@@ -42,8 +42,88 @@ public class EditPersonalInfo extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Integer id = Integer.valueOf(req.getParameter("id"));
-        String name = req.getParameter("");
 
+        //для сохранения при релогине
+        boolean relogin =false;
+        Integer id = Integer.valueOf(req.getParameter("id"));
+        String name = req.getParameter("name");
+        String email = req.getParameter("email");
+        String country = req.getParameter("country");
+        Integer money = Integer.valueOf(req.getParameter("money"));
+        //resp.getWriter().append("name " +name+ "email"+ email + "country"+country +"money"+money);
+        {
+            Connection con = (Connection) getServletContext().getAttribute("DBConnection");
+            PreparedStatement ps = null;
+            try {
+                changeinfo(id, name, email, country, money, con);
+                ps = null;
+                ResultSet rs = null;
+                try {
+                    ps = con.prepareStatement("select id, customer_name, email,country, money from users where id=? ");
+                    ps.setInt(1,id);
+                    rs = ps.executeQuery();
+                    if (rs != null && rs.next()) {
+
+                        // User user = new User(rs.getString("customer_name"), rs.getString("email"), rs.getString("country"), rs.getInt("id"));
+                        User user = new User(rs.getString("customer_name"),
+                                rs.getString("email"), rs.getString("country"), rs.getInt("id"),rs.getInt("money"));
+
+                        HttpSession session = req.getSession();
+                        session.setAttribute("User", user);
+
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    throw new ServletException("DB Connection problem.");
+                } finally {
+                    try {
+                        rs.close();
+                        ps.close();
+                    } catch (SQLException e) {
+                        System.out.println("SQLException in closing PreparedStatement or ResultSet");
+                    }
+
+                }
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("/home.jsp");
+                PrintWriter out = resp.getWriter();
+                out.println("<font color=green>Update successful.</font>");
+                rd.include(req, resp);
+
+/*                User user = (User) req.getSession().getAttribute("User");
+                if(money.equals(user.getMoney())) {
+                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html");
+                    PrintWriter out = resp.getWriter();
+                    out.println("<font color=green>Update successful, please relogin below if you want change .</font>");
+                     relogin =true;
+                    req.getSession().setAttribute("Relogin",relogin);
+                    rd.include(req, resp);
+                } else {
+                    user.setMoney(money);
+                    req.getSession().setAttribute("User",user);
+
+                    //forward to login page to login
+                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/home.jsp");
+                    PrintWriter out = resp.getWriter();
+                    out.println("<font color=green>Update successful, please relogin below.</font>");
+                    rd.include(req, resp);
+                }*/
+
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+
+    }
+
+    private void changeinfo(Integer id, String name, String email, String country, Integer money, Connection con) throws SQLException {
+        PreparedStatement ps;
+        ps = con.prepareStatement("update users set money = ?, country=?, customer_name=?,email=?  where id = ?");
+        ps.setInt(1, money);
+        ps.setString(2, country);
+        ps.setString(3, name);
+        ps.setString(4, email);
+        ps.setInt(5, id);
+        ps.execute();
     }
 }
