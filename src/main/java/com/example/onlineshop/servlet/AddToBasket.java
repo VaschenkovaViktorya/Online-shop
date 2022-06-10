@@ -14,13 +14,15 @@ import jakarta.websocket.Session;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import static com.example.onlineshop.servlet.GetProductServlet.mapProduct;
-import static com.example.onlineshop.servlet.GetProductServlet.products;
+
 
 @WebServlet(name = "addToBasket", urlPatterns = {"/addToBasket"})
 public class AddToBasket extends HttpServlet {
+    private Map<Integer,Product> mapProduct = new HashMap<>();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer id = Integer.valueOf(req.getParameter("id"));
@@ -35,7 +37,8 @@ public class AddToBasket extends HttpServlet {
         String Msg  = "Product added to basket  "+id ;
 //формирование корзины
         //???? могу и из сессии получит????
-
+       // MapaProductov
+        mapProduct = (Map<Integer, Product>) getServletContext().getAttribute("MapaProductov");
         Product selectedProduct = mapProduct.get(id);
         System.out.println(">>>>>> mapProduct" + mapProduct.get(id).toString());
        // System.out.println(">>>>>est' li product "+selectedProduct.toString());
@@ -51,7 +54,7 @@ public class AddToBasket extends HttpServlet {
         //System.out.println("<<<<<<<<<<<<"+myBasket.toString());
 
 //        req.getContextPath() + "/index"
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/listOfProduct.jsp");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/viewBasket.jsp");
         PrintWriter out= resp.getWriter();
 /*        for (int j=0;j<5; j++ ) out.println("<a href = #><font color=blue>" + Msg + "</font>circle</a>");
         //out.println("<a href = #><font color=red>"+Msg+"</font></a>");*/

@@ -24,7 +24,9 @@
 <p><b>with map</b></p> <br/>
 <a href="./viewBasket">basket</a>
 <%
-    Map<Integer, Product> mapOfProduct = (Map<Integer, Product>) session.getAttribute("Map_of_product");
+  Map<Integer, Product> mapOfProduct = (Map<Integer, Product>) session.getAttribute("Map_of_product");
+
+
     out.println("<ui>");
     for (Map.Entry <Integer, Product> entry : mapOfProduct.entrySet()){
         out.println("<li>" + entry.getValue().getName() + entry.getValue().getPrice()+"<a href =./addToBasket?id=" + entry.getKey() + ">add to basket</a>" +"</li>");

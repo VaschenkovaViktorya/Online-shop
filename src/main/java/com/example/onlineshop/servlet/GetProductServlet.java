@@ -22,11 +22,16 @@ import java.util.logging.Logger;
 @WebServlet(name = "getProduct", urlPatterns = {"/getProduct"})
 public class GetProductServlet extends HttpServlet {
     static Logger logger = Logger.getLogger(String.valueOf(LoginServlet.class));
-    public static List<Product> products= new ArrayList<>();
-    public static Map<Integer,Product> mapProduct = new HashMap<>();
+//    public static List<Product> products= new ArrayList<>();
+//    public static Map<Integer,Product> mapProduct = new HashMap<>();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        session.setAttribute("Map_of_product",(Map<Integer, Product>) getServletContext().getAttribute("MapaProductov"));
+        resp.sendRedirect("listOfProduct.jsp");
+      //  mapProduct = (Map<Integer, Product>) getServletContext().getAttribute("MapaProductov");
+        /*
             Connection con = (Connection) getServletContext().getAttribute("DBConnection");
             System.out.println(">>>>>>>>>Connection");
             PreparedStatement ps = null;
@@ -36,6 +41,7 @@ public class GetProductServlet extends HttpServlet {
                 //ps.setString(1, category);
                 rs = ps.executeQuery();
                 products.clear();
+               // mapProduct.clear();
                 if (rs != null){
                     while ( rs.next()) {
                         //  products.add(new Product(rs.getString("product_name"), rs.getString("category"), rs.getInt("id"), rs.getInt("price"), rs.getInt("quantity")));
@@ -64,6 +70,6 @@ public class GetProductServlet extends HttpServlet {
 
             }
 
-
+*/
     }
 }

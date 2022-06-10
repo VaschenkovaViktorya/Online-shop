@@ -9,7 +9,7 @@ public class Product implements Serializable {
     private int id;
     private int price;
     private int quantity;
-
+    public Product(){}
     public Product(String name, String category, int id, int price, int quantity) {
         this.name = name;
         this.category = category;

@@ -6,8 +6,7 @@ import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.onlineshop.servlet.GetProductServlet.products;
-import static org.apache.logging.log4j.web.WebLoggerContextUtils.getServletContext;
+
 
 public class Testing {
     public static void main(String[] args) {
