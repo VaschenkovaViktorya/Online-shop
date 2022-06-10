@@ -29,8 +29,9 @@ public class LoginServlet extends HttpServlet {
         User user = (User) session.getAttribute("User");
         if (user != null)
             resp.sendRedirect("home.jsp");
-        else {RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html");
-            rd.forward(req,resp);
+        else {
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html");
+            rd.forward(req, resp);
         }
     }
 
@@ -59,21 +60,24 @@ public class LoginServlet extends HttpServlet {
             PreparedStatement ps = null;
             ResultSet rs = null;
             try {
-                ps = con.prepareStatement("select id, customer_name, email,country, money from users where email=? and customer_password=? limit 1");
+                ps = con.prepareStatement("select id, customer_name, email,country, money , manager from users where email=? and customer_password=? limit 1");
                 ps.setString(1, email);
                 ps.setString(2, password);
                 rs = ps.executeQuery();
 
                 if (rs != null && rs.next()) {
 
-                   // User user = new User(rs.getString("customer_name"), rs.getString("email"), rs.getString("country"), rs.getInt("id"));
+                    // User user = new User(rs.getString("customer_name"), rs.getString("email"), rs.getString("country"), rs.getInt("id"));
                     User user = new User(rs.getString("customer_name"),
-                            rs.getString("email"), rs.getString("country"), rs.getInt("id"),rs.getInt("money"));
+                            rs.getString("email"), rs.getString("country"), rs.getInt("id"), rs.getInt("money"));
 
                     HttpSession session = req.getSession();
                     session.setAttribute("User", user);
+                    if (rs.getString("manager").equals("manager")) {
+                        resp.sendRedirect("homeManager.jsp");
+                    }else{resp.sendRedirect("home.jsp");}
 
-                    resp.sendRedirect("home.jsp");
+
                 } else {
                     RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html");
                     PrintWriter out = resp.getWriter();
