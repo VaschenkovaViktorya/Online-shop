@@ -15,6 +15,9 @@
 
 <p><a href="createNewUser">Создать нового пользователя</a></p>
 <h2>Список пользователей</h2>
+<form action="getUsers" method="get">
+    <input type="submit" value="Обновить">
+</form>
 <%
     Map<Integer, User> mapOfUsers = (Map<Integer, User>) session.getAttribute("ListUserForManager");
 
@@ -29,5 +32,6 @@
         out.println("</ui>");
     }
 %>
+<a href="workManager.jsp">Управление магазином</a><br>
 </body>
 </html>
