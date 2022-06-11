@@ -21,7 +21,7 @@ import java.util.Map;
 public class EditManagerUserSerlvlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html; charset=UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
         Map<Integer,User> users = (Map<Integer, User>) req.getSession().getAttribute("ListUserForManager");
         Integer id = Integer.valueOf(req.getParameter("id"));
         if (users!=null ){
@@ -41,7 +41,7 @@ public class EditManagerUserSerlvlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html; charset=UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
         //resp.getWriter().append("редактирвание пользователя в БД");
         User user = new User();
         Integer id = Integer.valueOf(req.getParameter("id"));

@@ -22,18 +22,18 @@ import java.util.List;
 public class BuyProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html; charset=UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("User");
         Integer totalPrice = (Integer) session.getAttribute("TotalPrice");
         List<Product> basket = (List<Product>) session.getAttribute("myBasket");
         Integer newMoney = null;
-        newMoney = user.getMoney() - totalPrice;
+
         if (user != null && basket.size() > 0) {
             if (totalPrice > user.getMoney()) {
                                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/viewBasket.jsp");
                 PrintWriter out = resp.getWriter();
-                out.println("<font color=red>You need more money <a href=\"home.jsp\">Personal account</a><br></font>");
+                out.println("<font color=red>Недостаточно средств на Вашем счете,  <a href=\"home.jsp\">пополнить</a><br></font>");
                 rd.include(req, resp);
             }else{
                 // resp.getWriter().append("You buy" + user.getName() + basket.toString());
@@ -51,6 +51,7 @@ public class BuyProductServlet extends HttpServlet {
                         ps.execute();
                     }
                     ps = null;
+                    newMoney = user.getMoney() - totalPrice;
                     try {
                         ps = con.prepareStatement("update users set money =? where id=?");
                         ps.setInt(1, newMoney);
@@ -63,7 +64,7 @@ public class BuyProductServlet extends HttpServlet {
 
                     RequestDispatcher rd = getServletContext().getRequestDispatcher("/viewBasket.jsp");
                     PrintWriter out = resp.getWriter();
-                    out.println("<font color=green>Buying is successful.</font>");
+                    out.println("<font color=green>Покупка совершена</font>");
                     rd.include(req, resp);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
@@ -75,7 +76,7 @@ public class BuyProductServlet extends HttpServlet {
         } else {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/viewBasket.jsp");
             PrintWriter out = resp.getWriter();
-            out.println("<font color=red>you must register in system If you are registered user, please <a href=\"login.html\">login</a></font>");
+            out.println("<font color=red>Вам нужно авторизоваться, перейдите на страницу <a href=\"login.html\">авторизации</a></font>");
             rd.include(req, resp);
         }
     }

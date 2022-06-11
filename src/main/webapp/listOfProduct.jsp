@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Testing</title>
+    <title>Товары</title>
 </head>
 <body>
 <%--<%
@@ -21,19 +21,21 @@
         out.println("</ui>");
     }
 %>--%>
-<p><b>with map</b></p> <br/>
-<a href="./viewBasket">basket</a>
+<p><b>Список товаров</b></p> <br/>
+<a href="./viewBasket">Корзина</a>
+<a href="index.html">Домой</a><br>
+
 <%
   Map<Integer, Product> mapOfProduct = (Map<Integer, Product>) session.getAttribute("Map_of_product");
 
 
     out.println("<ui>");
     for (Map.Entry <Integer, Product> entry : mapOfProduct.entrySet()){
-        out.println("<li>" + entry.getValue().getName() + entry.getValue().getPrice()+"<a href =./addToBasket?id=" + entry.getKey() + "&uri=listOfProduct>add to basket</a>" +"</li>");
+        out.println("<li>" + entry.getValue().getName() +" " +entry.getValue().getCategory()+" "+ entry.getValue().getPrice()+" "+"<a href =./addToBasket?id=" + entry.getKey() + "&uri=listOfProduct>Добавить в корзину</a>" +"</li>");
         out.println("</ui>");
     }
 %>
-<a href="index.html">home</a><br>
+
 
 
 <%--<a href=\"./addToBasket?name="--%>

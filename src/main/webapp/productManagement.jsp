@@ -1,6 +1,7 @@
 <%@ page import="com.example.onlineshop.utils.User" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="com.example.onlineshop.utils.Product" %><%--
+
   Created by IntelliJ IDEA.
   User: gorvi
   Date: 11.06.2022
@@ -8,6 +9,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <title>Title</title>
@@ -25,9 +27,9 @@
 
     out.println("<ui>");
     for (Map.Entry <Integer, Product> entry : mapOfProduct.entrySet()){
-        out.println("<li>" + entry.getValue().getName() +" "+ entry.getValue().getPrice()+"<a href =managerEditProduct?id=" + entry.getKey() + ">Edit</a>" +"<form method=\"post\" action=\"deleteProduct\" style=\"display:inline;\">\n" +
+        out.println("<li>" + entry.getValue().getName() +" "+entry.getValue().getCategory()+" "+ entry.getValue().getPrice()+" " +entry.getValue().getQuantity()+"<a href =managerEditProduct?id=" + entry.getKey() + ">Изменить</a>" +"<form method=\"post\" action=\"deleteProduct\" style=\"display:inline;\">\n" +
                 "    <input type=\"hidden\" name=\"id\" value="+entry.getKey()+">\n" +
-                "    <input type=\"submit\" value=\"Delete\">\n" +
+                "    <input type=\"submit\" value=\"Удалить\">\n" +
                 "</form></li>");
 
         out.println("</ui>");

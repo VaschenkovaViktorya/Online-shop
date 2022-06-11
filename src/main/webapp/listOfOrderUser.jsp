@@ -6,24 +6,26 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "https://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>List of ORDER</title>
+    <title>Список покупок</title>
 </head>
 <body>
-<p><b>List of ORDER</b></p> <br/>
+<p><b>Список покупок</b></p> <br/>
 <%
     List<Product> listOfProduct = (List<Product>) session.getAttribute("listOfOrderProduct");
     out.println("<ui>");
     for (Product s : listOfProduct) {
-        out.println("<li>" + s.getName() + s.getPrice()+"<a href =./addToBasket?id=" + s.getId() + ">add to basket</a>" +"</li>");
+                out.println("<li>" + s.getName() +" "+s.getCategory()+" "+ s.getPrice()+" "+ "<a href =./addToBasket?id=" + s.getId() + "&uri=listOfOrderUser>добавить в корзину</a>" +"</li>");
+        //out.println("<li>" + s.getName() + s.getPrice()+"<a href =./addToBasket?id=" + s.getId() + ">add to basket</a>" +"</li>");
         out.println("</ui>");
     }
 %>
 
-<a href="./viewBasket">basket</a>
+<a href="./viewBasket">Корзина</a><br/>
 <%--<%--%>
 <%--    Map<Integer, Product> mapOfProduct = (Map<Integer, Product>) session.getAttribute("Map_of_product");--%>
 <%--    out.println("<ui>");--%>

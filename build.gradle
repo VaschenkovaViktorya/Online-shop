@@ -41,7 +41,7 @@ dependencies {
 
 }
 gretty {
-    httpPort = 8082
+    httpPort = 8084
     contextPath = '/MyShop'
 }
 

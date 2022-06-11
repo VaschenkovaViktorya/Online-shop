@@ -20,6 +20,7 @@ import java.sql.SQLException;
 public class EditPersonalInfo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html;charset=UTF-8");
 
         try {
             Integer id = Integer.valueOf(req.getParameter("id"));
@@ -42,7 +43,7 @@ public class EditPersonalInfo extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html; charset=UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
 
         //для сохранения при релогине
         User user = new User();
@@ -77,12 +78,12 @@ public class EditPersonalInfo extends HttpServlet {
                     if ((rs.getString("manager") != null) && (rs.getString("manager").equals("manager"))) {
                         RequestDispatcher rd = getServletContext().getRequestDispatcher("/homeManager.jsp");
                         PrintWriter out = resp.getWriter();
-                        out.println("<font color=green>Update successful.</font>");
+                        out.println("<font color=green>Данные успешно изменены</font>");
                         rd.include(req, resp);
                     } else {
                         RequestDispatcher rd = getServletContext().getRequestDispatcher("/home.jsp");
                         PrintWriter out = resp.getWriter();
-                        out.println("<font color=green>Update successful.</font>");
+                        out.println("<font color=green>Данные успешно изменены</font>");
                         rd.include(req, resp);
                     }
                 } catch (SQLException e) {

@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html; charset=UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("User");
         if (user != null) {
@@ -42,15 +42,15 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html; charset=UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String errorMsg = null;
         if (email == null || email.equals("")) {
-            errorMsg = "User Email can't be null or empty";
+            errorMsg = "Заполните email";
         }
         if (password == null || password.equals("")) {
-            errorMsg = "Password can't be null or empty";
+            errorMsg = "Заполните пароль";
         }
 
         if (errorMsg != null) {
@@ -89,7 +89,7 @@ public class LoginServlet extends HttpServlet {
                 } else {
                     RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html");
                     PrintWriter out = resp.getWriter();
-                    out.println("<font color=red>No user found with given email id, please register first.</font>");
+                    out.println("<font color=red>Ползоватеь не найден, попробуйте еще раз.</font>");
                     rd.include(req, resp);
                 }
             } catch (SQLException e) {

@@ -15,7 +15,7 @@ import java.util.List;
 public class ViewBasketServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html; charset=UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
         HttpSession httpSession = req.getSession();
         List<Product> mybasket = (List<Product>) httpSession.getAttribute("myBasket");
         if (mybasket != null && mybasket.size()!=0)

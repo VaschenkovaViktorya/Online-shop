@@ -23,7 +23,7 @@ public class ViewOrderServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html; charset=UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("User");
         if (user != null) {

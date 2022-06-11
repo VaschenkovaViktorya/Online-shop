@@ -4,19 +4,20 @@
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.Map" %>
 
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "https://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>View basket</title>
 </head>
 <body>
 
 
-<p><b>view basket</b></p> <br/>
-<a href="index.html">home</a>
+<p><b>Просмотр корзины </b></p>
+
 <%--<%
     Map<Integer, Product> mapOfProduct = (Map<Integer, Product>) session.getAttribute("findedMapProduct");
     out.println("<ui>");
@@ -29,24 +30,14 @@
 
 
 <%--<a href=\"./addToBasket?name="--%>
-<div>
-    <form action="BuyProduct" method="get">
-        <br>
-        <input type="submit" value="Buy">
-    </form>
-</div>
+
 <%
     List<Product> listOfProduct = (List<Product>) session.getAttribute("myBasket");
-//    out.println("<ui>");
-//    for (Product s : listOfProduct) {
-//        out.println("<li>" + s.getName() + s.getPrice()+"<a href =./addToBasket?id=" + s.getId() + ">X</a>" +"</li>");
-//        out.println("</ui>");
-//    }
     int total = 0;
     out.println("<table>  <tr>\n" +
-            "    <th>Name</th>\n" +
-            "    <th>Category</th>\n" +
-            "    <th>Price</th>\n" +
+            "    <th>Название</th>\n" +
+            "    <th>Категория</th>\n" +
+            "    <th>Цена</th>\n" +
             "  </tr>");
     for (int i=0; i<listOfProduct.size();i++){
         Product p = listOfProduct.get(i);
@@ -60,10 +51,16 @@
 
     }
     session.setAttribute("TotalPrice", total);
-    out.println("<tr><b>Total price = </b>"+total+"</tr></table>");
+    out.println("<tr><b>Итого = </b>"+total+"</tr></table>");
 %>
-<p><b>view basket</b></p> <br/>
-<a href="Login">Personal account</a>
+<div>
+    <form action="BuyProduct" method="get">
+        <br>
+        <input type="submit" value="Купить">
+    </form>
+</div></br>
+<a href="index.html">Домой</a></br>
+<a href="Login">Личная страница</a>
 </body>
 </html>
 

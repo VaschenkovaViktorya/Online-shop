@@ -16,14 +16,14 @@ import java.sql.PreparedStatement;
 public class CreateNewProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html; charset=UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
         getServletContext().getRequestDispatcher("/CreateProduct.jsp").forward(req,resp);
         //resp.getWriter().append("Создание нового продукта");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html; charset=UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
         String product_name = req.getParameter("product_name");
         String category = req.getParameter("category");
         String price = req.getParameter("price");

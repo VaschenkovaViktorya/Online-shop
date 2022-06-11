@@ -6,6 +6,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "https://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,9 +28,7 @@
     Map<Integer, Product> mapOfProduct = (Map<Integer, Product>) session.getAttribute("findedMapProduct");
     out.println("<ui>");
     for (Map.Entry<Integer, Product> entry : mapOfProduct.entrySet()) {
-        out.println("<li>" + entry.getValue().getName() + entry.getValue().getPrice() + "<a href =./addToBasket?id=" + entry.getKey() + "&uri=listOfFindedProduct>add to basket</a>" + "</li>");
-
-
+        out.println("<li>" + entry.getValue().getName() +" "+entry.getValue().getCategory()+" "+ entry.getValue().getPrice() + " <a href =./addToBasket?id=" + entry.getKey() + "&uri=listOfFindedProduct> Добавить в корзину</a>" + "</li>");
         out.println("</ui>");
     }
 %>

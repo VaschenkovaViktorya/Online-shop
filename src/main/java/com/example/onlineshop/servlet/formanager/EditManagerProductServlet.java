@@ -20,7 +20,7 @@ import java.util.Map;
 public class EditManagerProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html; charset=UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
         Map<Integer, Product> product = (Map<Integer, Product>) req.getSession().getAttribute("ListproductsForManager");
         Integer id = Integer.valueOf(req.getParameter("id"));
         if (product != null) {
@@ -39,7 +39,7 @@ public class EditManagerProductServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html; charset=UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
         //resp.getWriter().append("редактирвание пользователя в БД");
         User user = new User();
         Integer id = Integer.valueOf(req.getParameter("id"));

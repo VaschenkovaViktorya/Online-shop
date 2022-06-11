@@ -16,14 +16,14 @@ import java.sql.PreparedStatement;
 public class CreateNewUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html; charset=UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
         getServletContext().getRequestDispatcher("/CreateUser.jsp").forward(req,resp);
        // resp.getWriter().append("Создание пользователя");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html; charset=UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String name = req.getParameter("name");

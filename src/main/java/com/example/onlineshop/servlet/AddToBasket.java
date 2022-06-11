@@ -26,7 +26,7 @@ public class AddToBasket extends HttpServlet {
     private Map<Integer,Product> mapProduct = new HashMap<>();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html; charset=UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
         Integer id = Integer.valueOf(req.getParameter("id"));
         String uri = req.getParameter("uri");
 
@@ -38,7 +38,7 @@ public class AddToBasket extends HttpServlet {
         if (user != null) {
             name = user.getName();
         }
-        String Msg  = "Product added to basket  "+id ;
+        String Msg  = "Продукт добавлен в корзину  " ;
 //формирование корзины
         //???? могу и из сессии получит????
        // здесь надо брать из Map_of_product

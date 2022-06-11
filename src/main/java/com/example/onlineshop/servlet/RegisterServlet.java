@@ -35,7 +35,7 @@ public class RegisterServlet extends HttpServlet {
         String country = req.getParameter("country");
         String errorMsg = null;
         if(email == null || email.equals("")){
-            errorMsg = "Email ID can't be null or empty.";
+            errorMsg = "Введите почту.";
         }
         if(password == null || password.equals("")){
             errorMsg = "Password can't be null or empty.";

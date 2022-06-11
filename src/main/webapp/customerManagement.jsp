@@ -7,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <title>Title</title>
@@ -24,9 +25,9 @@
 
     out.println("<ui>");
     for (Map.Entry <Integer, User> entry : mapOfUsers.entrySet()){
-        out.println("<li>" + entry.getValue().getName() + entry.getValue().getEmail()+"<a href =managerEditUser?id=" + entry.getKey() + ">Edit</a>" +"<form method=\"post\" action=\"DeleteUser\" style=\"display:inline;\">\n" +
+        out.println("<li>" + entry.getValue().getName() +" "+ entry.getValue().getEmail()+" "+entry.getValue().getCountry()+" " +entry.getValue().getMoney()+" "+"<a href =managerEditUser?id=" + entry.getKey() + ">Изменить</a>" +"<form method=\"post\" action=\"DeleteUser\" style=\"display:inline;\">\n" +
                 "    <input type=\"hidden\" name=\"id\" value="+entry.getKey()+">\n" +
-                "    <input type=\"submit\" value=\"Delete\">\n" +
+                "    <input type=\"submit\" value=\"Удалить\">\n" +
                 "</form></li>");
 
         out.println("</ui>");

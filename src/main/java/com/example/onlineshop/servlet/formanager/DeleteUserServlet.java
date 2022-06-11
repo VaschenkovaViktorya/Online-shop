@@ -18,7 +18,7 @@ public class DeleteUserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html; charset=UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
         Integer id = Integer.valueOf(req.getParameter("id"));
        // resp.getWriter().append(" "+id);
         //delete from users where id = '6'

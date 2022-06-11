@@ -17,6 +17,7 @@ import static com.example.onlineshop.utils.UsersService.loadUsers;
 public class GetUsersServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html;charset=UTF-8");
         Map<Integer, User> users = loadUsers();
         HttpSession session = req.getSession();
         session.setAttribute("ListUserForManager",users);

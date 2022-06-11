@@ -2,6 +2,7 @@
 
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "https://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,7 +25,7 @@
 <%--<form action="Logout" method="post">--%>
 <%--    <input type="submit" value="Logout">--%>
 <%--</form>--%>
-<a href="index.html">home</a><br>
+<a href="index.html">Домой</a><br>
 
 <%--<a href="viewBasket">you basket</a></br>--%>
 <%--<form action="viewOrder" method="post">

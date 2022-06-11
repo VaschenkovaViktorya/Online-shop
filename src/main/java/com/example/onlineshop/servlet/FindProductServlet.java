@@ -24,7 +24,8 @@ import java.util.Map;
 public class FindProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-                resp.setContentType("text/html; charset=UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         Map<Integer,Product> findedMapProduct = new HashMap<>();
         String name = req.getParameter("name");
         String category = req.getParameter("category");
@@ -35,8 +36,10 @@ public class FindProductServlet extends HttpServlet {
                 && (price == null || price.equals("")) && (quantity == null || quantity.equals(""))) {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/findProduct.html");
             PrintWriter out = resp.getWriter();
-            out.println("<font color=red>\"Enter any request\".</font>");
+            out.println("<font color=red>\"Введите данные\".</font>");
             rd.include(req, resp);
+
+
         } else {
             //resp.getWriter().append("finding");
             Connection con = (Connection) getServletContext().getAttribute("DBConnection");
@@ -82,8 +85,8 @@ public class FindProductServlet extends HttpServlet {
                     }
                 }
                 rs = ps.executeQuery();
-                System.out.println(">>>>>>>>>>>>>>ps.executeQuery()");
-                System.out.println(rs==null);
+                // System.out.println(">>>>>>>>>>>>>>ps.executeQuery()");
+               // System.out.println(rs==null);
                 if (rs != null) {
                     while (rs.next()) {
                         findedProduct.add(new Product(rs.getString("product_name"),
@@ -100,7 +103,7 @@ public class FindProductServlet extends HttpServlet {
                         System.out.println(">>>>>>>map is empry");
                         RequestDispatcher rd = getServletContext().getRequestDispatcher("/findProduct.html");
                         PrintWriter out = resp.getWriter();
-                        out.println("<font color=red>product not found</font>");
+                        out.println("<font color=red>продукт не найден</font>");
                         rd.include(req, resp);
                     } else{
                                             HttpSession session = req.getSession();
@@ -116,7 +119,7 @@ public class FindProductServlet extends HttpServlet {
                 } else {
                     RequestDispatcher rd = getServletContext().getRequestDispatcher("/findProduct.html");
                     PrintWriter out = resp.getWriter();
-                    out.println("<font color=red>product not found</font>");
+                    out.println("<font color=red>Продукт не найден</font>");
                     rd.include(req, resp);
                 }
             } catch (SQLException e) {
