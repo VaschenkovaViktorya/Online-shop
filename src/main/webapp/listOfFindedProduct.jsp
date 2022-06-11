@@ -24,13 +24,26 @@
 %>--%>
 <p><b>Найденный продукт</b></p> <br/>
 <a href="./viewBasket">Корзина</a>
-<%
+<%--<%
     Map<Integer, Product> mapOfProduct = (Map<Integer, Product>) session.getAttribute("findedMapProduct");
     out.println("<ui>");
     for (Map.Entry<Integer, Product> entry : mapOfProduct.entrySet()) {
         out.println("<li>" + entry.getValue().getName() +" "+entry.getValue().getCategory()+" "+ entry.getValue().getPrice() + " <a href =./addToBasket?id=" + entry.getKey() + "&uri=listOfFindedProduct> Добавить в корзину</a>" + "</li>");
         out.println("</ui>");
     }
+%>--%>
+<%
+    Map<Integer, Product> mapOfProduct1 = (Map<Integer, Product>) session.getAttribute("findedMapProduct");
+    out.println("<table>  <tr>\n" +
+            "    <th>Название</th>\n" +
+            "    <th>Категория</th>\n" +
+            "    <th>Цена</th>\n" +
+            "    <th></th>\n" +
+            "  </tr>");
+    for (Map.Entry <Integer, Product> entry : mapOfProduct1.entrySet()){
+        out.println("<tr><td>"+entry.getValue().getName()+"</td><td>"+entry.getValue().getCategory()+"</td><td>"+entry.getValue().getPrice()+"</td><td><a href =./addToBasket?id=" + entry.getKey() + "&uri=listOfFindedProduct>Добавить в корзину</a></td></tr>");
+    }
+    out.println("</table>");
 %>
 <a href="index.html">Домой</a><br>
 

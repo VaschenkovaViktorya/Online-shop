@@ -43,7 +43,7 @@ public class ViewBasketServlet extends HttpServlet {
             resp.getWriter().append("</table>");
         }*/ else {
            // resp.getWriter().append(" <Your basket is empty");
-            resp.getWriter().append(" <p>Your basket is empty <a href=\"index.html\">return start page</a></p>");
+            resp.getWriter().append(" <p>Ваша корзина пуста <a href=\"index.html\">Домой</a></p>");
         }
     }
 }

@@ -21,7 +21,7 @@
 <form action="GetProductByManager" method="get">
     <input type="submit" value="Обновить">
 </form>
-<%
+<%--<%
     Map<Integer, Product> mapOfProduct = (Map<Integer, Product>) session.getAttribute("ListproductsForManager");
 
 
@@ -34,6 +34,24 @@
 
         out.println("</ui>");
     }
+%>--%>
+<%
+    Map<Integer, Product> mapOfProduct1 = (Map<Integer, Product>) session.getAttribute("ListproductsForManager");
+    out.println("<table>  <tr>\n" +
+            "    <th>Название</th>\n" +
+            "    <th>Категория</th>\n" +
+            "    <th>Цена</th>\n" +
+            "    <th>Остаток</th>\n" +
+            "    <th></th>\n" +
+            "    <th></th>\n" +
+            "  </tr>");
+    for (Map.Entry <Integer, Product> entry : mapOfProduct1.entrySet()){
+        out.println("<tr><td>"+entry.getValue().getName()+"</td><td>"+entry.getValue().getCategory()+"</td><td>"+entry.getValue().getPrice()+"</td><td>"+entry.getValue().getQuantity()+"</td><td><a href =managerEditProduct?id=" + entry.getKey() + ">Изменить</a></td><td><form method=\"post\" action=\"deleteProduct\" style=\"display:inline;\">" +
+                               "    <input type=\"hidden\" name=\"id\" value="+entry.getKey()+">" +
+                               "    <input type=\"submit\" value=\"Удалить\">" +
+                                "</form></td></tr>");
+    }
+    out.println("</table>");
 %>
 <a href="workManager.jsp">Назад в управление магазином</a><br>
 <a href="homeManager.jsp">Перейти в личный профиль</a><br>
