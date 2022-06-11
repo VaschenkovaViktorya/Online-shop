@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html;charset=utf-8");
+        resp.setContentType("text/html;charset=UTF-8");
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("User");
         if (user != null) {
@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html;charset=utf-8");
+        resp.setContentType("text/html;charset=UTF-8");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String errorMsg = null;

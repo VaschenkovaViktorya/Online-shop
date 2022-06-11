@@ -14,9 +14,9 @@
 <body>
 <form action="createNewUser" method="post">
     <strong>Email ID</strong>:<input type="text" name="email"><br>
-    <strong>Password</strong>:<input type="password" name="password"><br>
-    <strong>Name</strong>:<input type="text" name="name"><br>
-    <strong>Country</strong>:<input type="text" name="country"><br>
+    <strong>Пароль</strong>:<input type="password" name="password"><br>
+    <strong>Имя</strong>:<input type="text" name="name"><br>
+    <strong>Страна</strong>:<input type="text" name="country"><br>
     <input type="submit" value="Создать">
 </form>
 <a href="index.html">Домой</a><br>
