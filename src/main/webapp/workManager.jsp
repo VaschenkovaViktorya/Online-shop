@@ -18,7 +18,8 @@
 <p><strong>money</strong>: <%=user.getMoney()%></p><br>
 <div><a href="edit?id=<%=user.getId()%>">Edit personal info</a></div>--%>
 <a href="getUsers">Редактирование пользователей </a><br>
-<a href="index.html">Редактирование товаров</a><br>
+<a href="GetProductByManager">Редактирование товаров</a><br>
+<a href="homeManager.jsp">Назад в профиль</a><br>
 <br>
 <%--<form action="Logout" method="post">--%>
 <%--    <input type="submit" value="Logout">--%>

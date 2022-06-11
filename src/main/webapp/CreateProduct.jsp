@@ -11,13 +11,14 @@
     <title>Создание нового пользователя</title>
 </head>
 <body>
-<form action="createNewUser" method="post">
-    <strong>Email ID</strong>:<input type="text" name="email"><br>
-    <strong>Password</strong>:<input type="password" name="password"><br>
-    <strong>Name</strong>:<input type="text" name="name"><br>
-    <strong>Country</strong>:<input type="text" name="country"><br>
+<form action="CreateNewProduct" method="post">
+    <strong>Название продукта</strong>:<input type="text" name="product_name"><br>
+    <strong>Категория продукта</strong>:<input type="text" name="category"><br>
+    <strong>Цена</strong>:<input type="text" name="price"><br>
+    <strong>Количество</strong>:<input type="text" name="quantity"><br>
     <input type="submit" value="Создать">
 </form>
+
 <a href="index.html">Домой</a><br>
 <a href="workManager.jsp">Управление магазином</a><br>
 <a href="customerManagement.jsp">Назад в управление пользователями</a><br>

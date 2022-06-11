@@ -32,7 +32,8 @@
 <%--        out.println("</ui>");--%>
 <%--    }--%>
 <%--%>--%>
-<a href="index.html">home</a><br>
+<a href="index.html">Домой</a><br>
+<a href="home.jsp">Личный профиль</a><br>
 
 
 <%--<a href=\"./addToBasket?name="--%>

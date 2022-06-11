@@ -1,5 +1,6 @@
 <%@ page import="com.example.onlineshop.utils.User" %>
-<%@ page import="java.util.Map" %><%--
+<%@ page import="java.util.Map" %>
+<%@ page import="com.example.onlineshop.utils.Product" %><%--
   Created by IntelliJ IDEA.
   User: gorvi
   Date: 11.06.2022
@@ -13,18 +14,18 @@
 </head>
 <body>
 
-<p><a href="createNewUser">Создать нового пользователя</a></p>
+<p><a href="CreateNewProduct">Создать новый продукт</a></p>
 <h2>Список пользователей</h2>
-<form action="getUsers" method="get">
+<form action="GetProductByManager" method="get">
     <input type="submit" value="Обновить">
 </form>
 <%
-    Map<Integer, User> mapOfUsers = (Map<Integer, User>) session.getAttribute("ListUserForManager");
+    Map<Integer, Product> mapOfProduct = (Map<Integer, Product>) session.getAttribute("ListproductsForManager");
 
 
     out.println("<ui>");
-    for (Map.Entry <Integer, User> entry : mapOfUsers.entrySet()){
-        out.println("<li>" + entry.getValue().getName() + entry.getValue().getEmail()+"<a href =managerEditUser?id=" + entry.getKey() + ">Edit</a>" +"<form method=\"post\" action=\"DeleteUser\" style=\"display:inline;\">\n" +
+    for (Map.Entry <Integer, Product> entry : mapOfProduct.entrySet()){
+        out.println("<li>" + entry.getValue().getName() +" "+ entry.getValue().getPrice()+"<a href =managerEditUser?id=" + entry.getKey() + ">Edit</a>" +"<form method=\"post\" action=\"DeleteUser\" style=\"display:inline;\">\n" +
                 "    <input type=\"hidden\" name=\"id\" value="+entry.getKey()+">\n" +
                 "    <input type=\"submit\" value=\"Delete\">\n" +
                 "</form></li>");
