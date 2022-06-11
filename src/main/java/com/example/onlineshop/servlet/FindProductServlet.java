@@ -24,6 +24,7 @@ import java.util.Map;
 public class FindProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+                resp.setContentType("text/html; charset=UTF-8");
         Map<Integer,Product> findedMapProduct = new HashMap<>();
         String name = req.getParameter("name");
         String category = req.getParameter("category");

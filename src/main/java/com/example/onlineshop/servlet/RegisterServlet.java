@@ -20,6 +20,7 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html; charset=UTF-8");
         String mail = req.getParameter("email");
         resp.getWriter().append(mail);
 
@@ -27,6 +28,7 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html; charset=UTF-8");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String name = req.getParameter("name");

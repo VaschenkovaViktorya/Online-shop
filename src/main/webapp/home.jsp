@@ -13,10 +13,10 @@
 <%User user = (User) session.getAttribute("User"); %>
 <h3>Hi <%=user.getName() %></h3>
 
-<p><strong>Your Name</strong>: <%=user.getName() %> </p><br>
-<p><strong>Your Email</strong>: <%=user.getEmail() %></p><br>
-<p><strong>Your Country</strong>: <%=user.getCountry() %></p><br>
-<p><strong>money</strong>: <%=user.getMoney()%></p><br>
+<p><strong>Ваше имя</strong>: <%=user.getName() %> </p><br>
+<p><strong>Ваша электронная почта</strong>: <%=user.getEmail() %></p><br>
+<p><strong>Ваша страна</strong>: <%=user.getCountry() %></p><br>
+<p><strong>Баланс</strong>: <%=user.getMoney()%></p><br>
 <div><a href="edit?id=<%=user.getId()%>">Edit</a></div>
 <br>
 <form action="Logout" method="post">

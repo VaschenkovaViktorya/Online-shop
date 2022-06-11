@@ -15,20 +15,23 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(name = "BuyProduct", urlPatterns = {"/BuyProduct"})
 public class BuyProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html; charset=UTF-8");
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("User");
         Integer totalPrice = (Integer) session.getAttribute("TotalPrice");
         List<Product> basket = (List<Product>) session.getAttribute("myBasket");
-
+        Integer newMoney = null;
+        newMoney = user.getMoney() - totalPrice;
         if (user != null && basket.size() > 0) {
             if (totalPrice > user.getMoney()) {
-                RequestDispatcher rd = getServletContext().getRequestDispatcher("/viewBasket.jsp");
+                                RequestDispatcher rd = getServletContext().getRequestDispatcher("/viewBasket.jsp");
                 PrintWriter out = resp.getWriter();
                 out.println("<font color=red>You need more money <a href=\"home.jsp\">Personal account</a><br></font>");
                 rd.include(req, resp);
@@ -47,11 +50,17 @@ public class BuyProductServlet extends HttpServlet {
                         System.out.println("user.getId()" + user.getId());
                         ps.execute();
                     }
-//                insert into  orders(id_user,id_product)
-//                values ('1', '4'),
+                    ps = null;
+                    try {
+                        ps = con.prepareStatement("update users set money =? where id=?");
+                        ps.setInt(1, newMoney);
+                        ps.setInt(2, user.getId());
 
+                        ps.execute();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
 
-                    //forward to login page to login
                     RequestDispatcher rd = getServletContext().getRequestDispatcher("/viewBasket.jsp");
                     PrintWriter out = resp.getWriter();
                     out.println("<font color=green>Buying is successful.</font>");

@@ -29,10 +29,7 @@ public class GetProductServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-/*        HttpSession session = req.getSession();
-        session.setAttribute("Map_of_product",(Map<Integer, Product>) getServletContext().getAttribute("MapaProductov"));
-        resp.sendRedirect("listOfProduct.jsp");*/
-      //  mapProduct = (Map<Integer, Product>) getServletContext().getAttribute("MapaProductov");
+        resp.setContentType("text/html; charset=UTF-8");
         Map<Integer,Product> mapProduct = new HashMap<>();
         mapProduct = loadProduct();
         HttpSession session = req.getSession();

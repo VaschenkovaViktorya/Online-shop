@@ -21,7 +21,7 @@
 
 <a href="index.html">Домой</a><br>
 <a href="workManager.jsp">Управление магазином</a><br>
-<a href="customerManagement.jsp">Назад в управление пользователями</a><br>
+<a href="productManagement.jsp">Назад в управление продуктами</a><br>
 
 </body>
 </html>

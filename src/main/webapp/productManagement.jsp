@@ -15,7 +15,7 @@
 <body>
 
 <p><a href="CreateNewProduct">Создать новый продукт</a></p>
-<h2>Список пользователей</h2>
+<h2>Список продуктов</h2>
 <form action="GetProductByManager" method="get">
     <input type="submit" value="Обновить">
 </form>
@@ -25,7 +25,7 @@
 
     out.println("<ui>");
     for (Map.Entry <Integer, Product> entry : mapOfProduct.entrySet()){
-        out.println("<li>" + entry.getValue().getName() +" "+ entry.getValue().getPrice()+"<a href =managerEditUser?id=" + entry.getKey() + ">Edit</a>" +"<form method=\"post\" action=\"DeleteUser\" style=\"display:inline;\">\n" +
+        out.println("<li>" + entry.getValue().getName() +" "+ entry.getValue().getPrice()+"<a href =managerEditProduct?id=" + entry.getKey() + ">Edit</a>" +"<form method=\"post\" action=\"deleteProduct\" style=\"display:inline;\">\n" +
                 "    <input type=\"hidden\" name=\"id\" value="+entry.getKey()+">\n" +
                 "    <input type=\"submit\" value=\"Delete\">\n" +
                 "</form></li>");

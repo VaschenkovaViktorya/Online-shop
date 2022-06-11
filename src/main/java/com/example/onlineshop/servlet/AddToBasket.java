@@ -26,6 +26,7 @@ public class AddToBasket extends HttpServlet {
     private Map<Integer,Product> mapProduct = new HashMap<>();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html; charset=UTF-8");
         Integer id = Integer.valueOf(req.getParameter("id"));
         String uri = req.getParameter("uri");
 

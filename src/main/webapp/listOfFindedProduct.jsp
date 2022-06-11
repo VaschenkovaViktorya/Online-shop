@@ -21,8 +21,8 @@
         out.println("</ui>");
     }
 %>--%>
-<p><b>Finded product</b></p> <br/>
-<a href="./viewBasket">basket</a>
+<p><b>Найденный продукт</b></p> <br/>
+<a href="./viewBasket">Корзина</a>
 <%
     Map<Integer, Product> mapOfProduct = (Map<Integer, Product>) session.getAttribute("findedMapProduct");
     out.println("<ui>");
@@ -33,7 +33,7 @@
         out.println("</ui>");
     }
 %>
-<a href="index.html">home</a><br>
+<a href="index.html">Домой</a><br>
 
 
 <%--<a href=\"./addToBasket?name="--%>
